@@ -8,7 +8,39 @@ public class Product {
 
     private String number;
 
+    private String serialNumber;
+
     private Category category;
+
+    private Activity activity;
+
+    private boolean onBid;
+
+    private double rentPerHour;
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
 
     public String getName() {
         return name;
@@ -32,6 +64,22 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public boolean isOnBid() {
+        return onBid;
+    }
+
+    public void setOnBid(boolean onBid) {
+        this.onBid = onBid;
+    }
+
+    public double getRentPerHour() {
+        return rentPerHour;
+    }
+
+    public void setRentPerHour(double rentPerHour) {
+        this.rentPerHour = rentPerHour;
     }
 
     @Override
