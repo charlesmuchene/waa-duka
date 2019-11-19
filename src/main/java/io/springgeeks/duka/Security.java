@@ -50,7 +50,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.authorizeRequests().antMatchers("/**").permitAll();
 
                 /*
                    The authorizeRequests configuration is where we specify what roles are allowed access to what URLs.
@@ -59,12 +59,12 @@ public class Security extends WebSecurityConfigurerAdapter {
                     in the order they are configured below.
                      (anyRequest()) should always be at the bottom of the list.
                  */
-                .authorizeRequests()
-                .antMatchers("/login**").permitAll()
-                .antMatchers("/employees/add").hasRole("ADMIN")
-                .antMatchers("/employees").hasAnyRole("ADMIN", "USER")
-                .anyRequest().permitAll()
-                .and()
+//                .authorizeRequests()
+//                .antMatchers("/**").permitAll()
+//                .antMatchers("/employees/add").hasRole("ADMIN")
+//                .antMatchers("/employees").hasAnyRole("ADMIN", "USER")
+//                .anyRequest().permitAll()
+//                .and()
 
                 /*
                  * This is where we configure our login form.
@@ -74,13 +74,13 @@ public class Security extends WebSecurityConfigurerAdapter {
                  * defaultSuccessUrl: the URL to which the user will be redirected if login is successful
                  * failureUrl: the URL to which the user will be redirected if  failed login
                  */
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/postlogin")
-                .defaultSuccessUrl("/welcome")
-                .failureUrl("/loginfailed")
-                .permitAll()
-                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .loginProcessingUrl("/postlogin")
+//                .defaultSuccessUrl("/welcome")
+//                .failureUrl("/loginfailed")
+//                .permitAll()
+//                .and()
 
                 /*
                  * This is where the logout page and process is configured.
@@ -90,17 +90,17 @@ public class Security extends WebSecurityConfigurerAdapter {
                  *  the delete-cookies and invalidate-session make sure that we clean up after
                  * logout
                  */
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/dologout"))
-                .logoutSuccessUrl("/logout")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true)
-
-                .and()
+//                .logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/dologout"))
+//                .logoutSuccessUrl("/logout")
+//                .deleteCookies("JSESSIONID")
+//                .invalidateHttpSession(true)
+//
+//                .and()
                 // access-denied-page: this is the page users will be
                 // redirected to when they try to access protected areas.
-                .exceptionHandling()
-                .accessDeniedPage("/accessDenied");
+//                .exceptionHandling()
+//                .accessDeniedPage("/accessDenied");
 
     }
 
