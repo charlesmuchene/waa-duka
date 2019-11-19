@@ -22,7 +22,7 @@ public class DukaScheduler {
     }
 
     @PostConstruct
-    @Scheduled(fixedDelay = 1000)
+//    @Scheduled(fixedDelay = 1000) TODO Activate
     private void broadcastDukaState() {
         simpMessagingTemplate.convertAndSend("/topic/place", new Product());
     }
