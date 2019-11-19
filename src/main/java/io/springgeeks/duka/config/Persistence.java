@@ -1,4 +1,4 @@
-package io.springgeeks.duka;
+package io.springgeeks.duka.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

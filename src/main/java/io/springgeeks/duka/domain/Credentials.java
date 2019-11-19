@@ -1,19 +1,23 @@
-package io.springgeeks.duka.domain.ref;
+package io.springgeeks.duka.domain;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
 
-
-@Entity(name = "USERS")
+@Entity
+@Table(name = "credentials")
 public class Credentials {
 
     @Id
+    @NotBlank(message = "{NotBlank.user.name}")
     @Column(name = "username", nullable = false, unique = true)
-    String username;
-    @Column(name = "PASSWORD", nullable = false)
-    String password;
-    String verifyPassword;
-    Boolean enabled;
+    private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+    private String verifyPassword;
+    private boolean enabled;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
@@ -59,4 +63,14 @@ public class Credentials {
         this.authority = authority;
     }
 
+    @Override
+    public String toString() {
+        return "Credentials{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", verifyPassword='" + verifyPassword + '\'' +
+                ", enabled=" + enabled +
+                ", authority=" + authority +
+                '}';
+    }
 }
