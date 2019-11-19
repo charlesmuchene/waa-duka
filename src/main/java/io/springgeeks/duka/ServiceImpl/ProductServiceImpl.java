@@ -4,25 +4,30 @@ import io.springgeeks.duka.domain.Product;
 import io.springgeeks.duka.repository.ProductRepository;
 import io.springgeeks.duka.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-public class ProductServiceImpl implements ProductService {
+@Service
+@Transactional
+public class ProductServiceImpl implements ProductService{
 
     @Autowired
     ProductRepository ProductRepository;
-    @Override
-    public List<Product> getAll() {
-        return ProductRepository.getAll();
+
+    public List<Product> findAll() {
+        return (List<Product>) ProductRepository.findAll();
     }
 
-    @Override
+
+
+
     public void save(Product product) {
         ProductRepository.save(product);
     }
 
-    @Override
-    public Product getOne(Long id) {
-        return ProductRepository.getOne(id);
+
+    public Product findByProductNumber(Long productId) {
+        return ProductRepository.findByProductNumber(productId);
     }
 }
