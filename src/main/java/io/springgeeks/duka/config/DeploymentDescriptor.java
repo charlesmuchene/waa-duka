@@ -1,6 +1,5 @@
-package io.springgeeks.duka;
+package io.springgeeks.duka.config;
 
-import io.springgeeks.duka.schedulers.DukaScheduler;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -14,10 +13,10 @@ public class DeploymentDescriptor implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext container) {
+
         // Create the 'root' Spring application context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(Service.class, WebSocketConfig.class, Persistence.class, Security.class, DukaScheduler.class);
-
+        rootContext.scan("io.springgeeks.duka");
         // Manage the lifecycle of the root application context
         container.addListener(new ContextLoaderListener(rootContext));
 

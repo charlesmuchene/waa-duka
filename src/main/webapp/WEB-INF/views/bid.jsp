@@ -14,6 +14,7 @@
     <span id="bid_span">No bid</span>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script type="text/javascript" src="<spring:url value="/resources/js/stomp.js"/>"></script>
 <script type="text/javascript" src="<spring:url value="/resources/js/bid.js"/>"></script>

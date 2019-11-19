@@ -1,6 +1,5 @@
 package io.springgeeks.duka.schedulers;
 
-import io.springgeeks.duka.domain.BidPayload;
 import io.springgeeks.duka.domain.Product;
 import io.springgeeks.duka.service.BiddingService;
 import org.springframework.beans.factory.annotation.Autowired;

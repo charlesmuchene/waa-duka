@@ -1,16 +1,11 @@
 package io.springgeeks.duka.controller;
 
-import io.springgeeks.duka.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-
-    @Autowired
-    private EmployeeService customerService;
 
     @RequestMapping({"/", "/welcome"})
     public String welcome(Model model) {
