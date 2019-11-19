@@ -1,6 +1,6 @@
 package io.springgeeks.duka.controller;
 
-import io.springgeeks.duka.domain.ref.Credentials;
+import io.springgeeks.duka.domain.Credentials;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -1,6 +1,5 @@
-package io.springgeeks.duka;
+package io.springgeeks.duka.config;
 
-import io.springgeeks.duka.interceptor.NoticeInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -42,8 +41,6 @@ public class Dispatcher extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new NoticeInterceptor())
-                .addPathPatterns("/employees/list");
     }
 
     @Bean(name = "messageSource")
@@ -66,6 +63,5 @@ public class Dispatcher extends WebMvcConfigurerAdapter {
     public Validator getValidator() {
         return validator();
     }
-
 
 }
