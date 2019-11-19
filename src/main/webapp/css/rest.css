@@ -1,0 +1,42 @@
+ 
+
+  #errors {
+	position:absolute;
+    top:  300px;
+    left: 200px;
+	background-color:LightBlue;	
+	width:375px;
+	height:175px;
+	z-index: 9002;
+   	border-style: solid;
+    border-color: blue;
+}
+    #errors, li {
+	color: FireBrick;
+   
+}
+ 
+ #formInput {
+position:absolute;
+   top:  300px;
+    left: 700px;
+background-color:tan;	
+width:400px;
+height:250px;
+z-index: 9002;
+   border-style: solid;
+    border-color: brown;
+}
+ 
+  #formAddressInput {
+position:absolute;
+   top:  300px;
+    left: 700px;
+background-color:lightblue;	
+width:500px;
+height:325px;
+z-index: 9002;
+   border-style: solid;
+    border-color: darkblue;
+}
+ 
