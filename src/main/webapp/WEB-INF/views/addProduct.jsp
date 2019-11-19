@@ -58,6 +58,9 @@
             <input type="text" id="color" name="color" size="16">
         </p>
 
+        <p>
+            <label for="condition">Condition</label>
+        </p>
 
         <input type="button" value="Submit" onclick="descriptionSubmit();return false;">
         <div align="center">
