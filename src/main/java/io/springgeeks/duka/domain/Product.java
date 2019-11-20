@@ -22,6 +22,8 @@ public class Product {
     @Column(name = "rent_per_hour")
     private double rentPerHour;
 
+    private double price;
+
     public String getSerialNumber() {
         return serialNumber;
     }
@@ -86,13 +88,26 @@ public class Product {
         this.rentPerHour = rentPerHour;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", number='" + number + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
                 ", category=" + category +
+                ", activity=" + activity +
+                ", onBid=" + onBid +
+                ", rentPerHour=" + rentPerHour +
+                ", price=" + price +
                 '}';
     }
 }

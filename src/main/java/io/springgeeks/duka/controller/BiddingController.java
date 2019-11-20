@@ -8,8 +8,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-import javax.validation.Valid;
-
 @Controller
 public class BiddingController {
 
@@ -22,8 +20,11 @@ public class BiddingController {
 
     @MessageMapping("/place")
     @SendTo("/topic/place")
-    public Product productBid(@Valid BidPayload payload) {
+    public Product productBid(BidPayload payload) {
         System.out.println(payload);
-        return new Product(); // TODO Get product by id
+        Product product = new Product(); // TODO Get product by id
+        product.setPrice(payload.getPrice());
+        System.out.println(product);
+        return product;
     }
 }

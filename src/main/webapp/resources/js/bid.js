@@ -25,10 +25,17 @@ client.connect(username, password, connectCallback, errorCallback);
  * Set up racing world!
  */
 const bidLinkElement = document.getElementById('bid_link');
-const bidSpanElement = document.getElementById('bid_span');
+const priceSpanElement = document.getElementById('price_span');
+const bidPriceElement = document.getElementById('bid_amount');
 
 bidLinkElement.addEventListener('click', () => {
-	console.log("Bid link clicked")
+	const price = bidPriceElement.value;
+	const payload = {
+		productId: 1234,
+		price: price
+	};
+	push(payload);
+	console.log('Pushed:', payload);
 });
 
 /**
@@ -36,8 +43,8 @@ bidLinkElement.addEventListener('click', () => {
  * @param content
  */
 function push(content) {
-	const payload = JSON.stringify(content);
-	client.send('/app/place', {}, payload);
+	content = JSON.stringify(content);
+	client.send('/app/place', {}, content);
 }
 
 /**
@@ -46,7 +53,7 @@ function push(content) {
  */
 function updateUI(product) {
 	// TODO Find the element with product.id
-	bidSpanElement.innerHTML = product.price;
+	priceSpanElement.innerHTML = 'Kes. ' + product.price;
 }
 
 /**
@@ -55,4 +62,5 @@ function updateUI(product) {
  */
 function update(frame) {
 	console.log(frame);
+	updateUI(JSON.parse(frame.body));
 }
