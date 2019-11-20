@@ -1,12 +1,19 @@
 package io.springgeeks.duka.domain;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "bid")
 public class Bid {
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private double amount;
+    @Column(name = "bidding_date")
     private LocalDate biddingDate;
+    @ManyToOne @JoinColumn(name = "product_id", nullable = false)
     private Product product;
+    @ManyToOne @JoinColumn(name = "user_id", nullable = false)
     private SystemUser systemUser;
 
     public int getId() {
