@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = {"io.springgeeks.duka.controller"})
+@ComponentScan(basePackages = {"io.springgeeks.duka"})
 @PropertySource(value = "classpath:application.properties")
 public class Dispatcher extends WebMvcConfigurerAdapter {
 
@@ -63,5 +63,4 @@ public class Dispatcher extends WebMvcConfigurerAdapter {
     public Validator getValidator() {
         return validator();
     }
-
 }

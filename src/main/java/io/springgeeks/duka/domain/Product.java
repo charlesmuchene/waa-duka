@@ -1,21 +1,25 @@
 package io.springgeeks.duka.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product")
 public class Product {
-
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    @Column(length = 30, nullable = false)
     private String name;
-
+    @Column(length = 8, nullable = false, name = "prod_no")
     private String number;
-
+    @Column(length = 20, name = "serial_number", unique = true, nullable = false)
     private String serialNumber;
-
+    @ManyToOne @JoinColumn(name = "category_id")
     private Category category;
-
+    @Column(columnDefinition = "varchar(7) not null")
     private Activity activity;
-
+    @Column(name = "on_bid")
     private boolean onBid;
-
+    @Column(name = "rent_per_hour")
     private double rentPerHour;
 
     public String getSerialNumber() {

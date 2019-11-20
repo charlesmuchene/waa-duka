@@ -1,0 +1,22 @@
+
+#form-div {
+    padding:40px;
+    background-color: #EEE;
+}
+
+.error {
+    color:#FF0000;
+    font-size: 12px;
+}
+
+.btn-success, .btn-success:hover, .btn-success:not(:disabled):not(.disabled):active,
+.btn-success:not(:disabled):not(.disabled).active, .show > .btn-success.dropdown-toggle,
+.btn-success:disabled,
+.show > .btn-success.dropdown-toggle{
+    background-color: #A52A2A;
+    border-color: #A52A2A;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus, .show > .btn-success.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(165, 42, 42, 0.5);
+}
