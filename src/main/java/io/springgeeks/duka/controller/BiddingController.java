@@ -21,10 +21,6 @@ public class BiddingController {
     @MessageMapping("/place")
     @SendTo("/topic/place")
     public Product productBid(BidPayload payload) {
-        System.out.println(payload);
-        Product product = new Product(); // TODO Get product by id
-        product.setPrice(payload.getPrice());
-        System.out.println(product);
-        return product;
+        return biddingService.placeBid(payload.getProductId(), payload.getPrice());
     }
 }

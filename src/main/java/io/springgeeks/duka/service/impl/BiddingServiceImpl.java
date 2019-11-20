@@ -1,6 +1,9 @@
 package io.springgeeks.duka.service.impl;
 
+import io.springgeeks.duka.domain.Product;
 import io.springgeeks.duka.service.BiddingService;
+import io.springgeeks.duka.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,11 +11,24 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class BiddingServiceImpl implements BiddingService {
 
-    // TODO Bidding repository
+    private ProductService productService;
+
+    @Autowired
+    public BiddingServiceImpl(ProductService productService) {
+        this.productService = productService;
+    }
 
     @Override
-    public void placeBid(long productId, double price) {
-        System.out.printf("id %d, price: %.0f", productId, price);
+    public Product placeBid(long productId, double price) {
+        Product product = productService.productById(productId);
+        if (product == null) return null;
+
+        if (product.getPrice() >= price) return null;
+
+        product.setPrice(price);
+        productService.save(product);
+
+        return product;
     }
 
 }
