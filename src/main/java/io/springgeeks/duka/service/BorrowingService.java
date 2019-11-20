@@ -4,6 +4,6 @@ import java.time.LocalDate;
 
 public interface BorrowingService {
 
-    public boolean checkIfProductIsAvailableForBorrowing(LocalDate borrowedDate, LocalDate returnDate);
+    boolean checkIfProductIsAvailableForBorrowing(LocalDate borrowedDate, LocalDate returnDate);
 
 }

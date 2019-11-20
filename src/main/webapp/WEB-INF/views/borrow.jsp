@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Borrow Page</title>
-    <link href="resources/bootstrap-4.3.1-dist/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="resources/css/custom.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -46,8 +46,9 @@
             </div>
         </div>
     </div>
-    <script src="resources/js/jquery-3.4.1.min.js"></script>
-    <script src="resources/js/jquery.validate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="resources/js/validations.js"></script>
     <script src="resources/js/custom.js"></script>
 </body>
