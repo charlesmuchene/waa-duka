@@ -1,6 +1,7 @@
 package io.springgeeks.duka.controller;
 
-import io.springgeeks.duka.service.EmployeeService;
+
+import io.springgeeks.duka.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,7 @@ public class HomeController {
 
 
     @Autowired
-    private EmployeeService customerService;
+    private ProductService productService;
 
     @RequestMapping({"/", "/welcome"})
     public String welcome(Model model) {
