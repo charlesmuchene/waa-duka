@@ -23,6 +23,9 @@ public class Credentials {
     @JoinColumn(name = "username", referencedColumnName = "username")
     List<Authority> authority;
 
+    @OneToOne(mappedBy = "credentials")
+    private User user;
+
     public String getUsername() {
         return username;
     }
@@ -61,6 +64,10 @@ public class Credentials {
 
     public void setAuthority(List<Authority> authority) {
         this.authority = authority;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override
