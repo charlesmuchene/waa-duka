@@ -1,4 +1,4 @@
-package io.springgeeks.duka;
+package io.springgeeks.duka.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -13,10 +13,10 @@ public class DeploymentDescriptor implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext container) {
+
         // Create the 'root' Spring application context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(Service.class, Persistence.class, Security.class);
-
+        rootContext.scan("io.springgeeks.duka");
         // Manage the lifecycle of the root application context
         container.addListener(new ContextLoaderListener(rootContext));
 

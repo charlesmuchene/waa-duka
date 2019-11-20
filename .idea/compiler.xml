@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="duka" />
+        <module name="waa-duka" />
       </profile>
     </annotationProcessing>
   </component>

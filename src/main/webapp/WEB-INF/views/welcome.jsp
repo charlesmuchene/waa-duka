@@ -31,7 +31,7 @@
 	
  	
 		
-					 <a href="<spring:url value='/employees/list' />" class="btn btn-default">
+					 <a href="#" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> Go to Company
 					</a>
 				</div>	
