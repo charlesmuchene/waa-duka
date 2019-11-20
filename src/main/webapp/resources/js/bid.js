@@ -31,7 +31,7 @@ const bidPriceElement = document.getElementById('bid_amount');
 bidLinkElement.addEventListener('click', () => {
 	const price = bidPriceElement.value;
 	const payload = {
-		productId: 1234,
+		productId: 1,
 		price: price
 	};
 	push(payload);

@@ -1,6 +1,6 @@
 package io.springgeeks.duka.controller;
 
-import io.springgeeks.duka.domain.BidPayload;
+import io.springgeeks.duka.domain.Bid;
 import io.springgeeks.duka.domain.Product;
 import io.springgeeks.duka.service.BiddingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,7 @@ public class BiddingController {
 
     @MessageMapping("/place")
     @SendTo("/topic/place")
-    public Product productBid(BidPayload payload) {
-        System.out.println(payload);
-        Product product = new Product(); // TODO Get product by id
-        product.setPrice(payload.getPrice());
-        System.out.println(product);
-        return product;
+    public Product productBid(Bid bid) {
+        return biddingService.placeBid(bid);
     }
 }
