@@ -20,7 +20,6 @@ public class Dispatcher extends WebMvcConfigurerAdapter {
 
     @Autowired
     Environment environment;
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(environment.getProperty("staticResourceAlias")).addResourceLocations(environment.getProperty("staticResourceLocation"));

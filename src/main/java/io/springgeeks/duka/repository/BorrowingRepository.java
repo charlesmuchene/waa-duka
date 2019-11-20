@@ -3,6 +3,7 @@ package io.springgeeks.duka.repository;
 import io.springgeeks.duka.domain.Borrowing;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public interface BorrowingRepository extends CrudRepository<Borrowing, Integer> 
             "(b.borrowedDate < ':returnDate' and b.borrowedDate >= ':borrowedDate') or " +
             "(b.returnDate > ':borrowedDate' and b.returnDate <= ':returnDate'))" +
             "= 0 then true else false end from dual")
-    public boolean checkAvailability(LocalDate borrowedDate, LocalDate returnDate);
+    public boolean checkAvailability(@Param("borrowedDate") LocalDate borrowedDate,
+                                     @Param("returnDate") LocalDate returnDate);
 
 }
