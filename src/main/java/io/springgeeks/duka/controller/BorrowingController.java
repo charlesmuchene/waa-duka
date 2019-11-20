@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class BorrowingController {
 
     @Autowired
-    BorrowingService borrowingService;
+    private BorrowingService borrowingService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String borrowForm(@ModelAttribute("newBorrow")Borrowing borrowing) {
@@ -29,6 +29,7 @@ public class BorrowingController {
     @RequestMapping(method = RequestMethod.POST)
     public String borrow(@Valid @ModelAttribute("newBorrow") Borrowing borrowing, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
+            borrowingService.checkIfProductIsAvailableForBorrowing(borrowing.getBorrowedDate(), borrowing.getReturnDate());
             return "redirect:/welcome";
         }
         return "borrow";

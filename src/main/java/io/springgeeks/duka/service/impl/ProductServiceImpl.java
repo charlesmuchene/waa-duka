@@ -13,24 +13,25 @@ import java.util.List;
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductRepository productRepository;
-
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    ProductRepository productRepository;
 
-    public List<Product> findAll() {
+    @Override
+    public Product findByProductNumber(String productId) {
+        return productRepository.findByNumber(productId);
+    }
+    @Override
+    public List<Product> allProducts() {
         return (List<Product>) productRepository.findAll();
+    }
+    @Override
+    public Product productById(long id) {
+        return productRepository.findOne(id);
     }
 
     @Override
-    public Product findOne(long productId) {
-        return productRepository.findOne(productId);
-    }
-
-    public void save(Product product) {
-        productRepository.save(product);
+    public Product save(Product product) {
+        return productRepository.save(product);
     }
 
 }

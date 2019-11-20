@@ -10,13 +10,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
 public class DeploymentDescriptor implements WebApplicationInitializer {
-
     @Override
     public void onStartup(ServletContext container) {
-
         // Create the 'root' Spring application context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.scan("io.springgeeks.duka");
+        rootContext.register(Persistence.class, Security.class, WebSocketConfig.class);
         // Manage the lifecycle of the root application context
         container.addListener(new ContextLoaderListener(rootContext));
 

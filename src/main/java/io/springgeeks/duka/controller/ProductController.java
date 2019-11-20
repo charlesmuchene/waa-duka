@@ -29,13 +29,13 @@ public class ProductController {
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String saveProduct(Product product) {
-        productService.save(product);
+        product = productService.save(product);
         return "ProductDetails";
     }
 
     @RequestMapping(value = "/viewProducts", method = RequestMethod.GET)
     public String listProducts(Model model) {
-        List<Product> list = productService.findAll();
+        List<Product> list = productService.allProducts();
         model.addAttribute("products", list);
         return "viewProducts";
     }
@@ -43,7 +43,7 @@ public class ProductController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public @ResponseBody
     Product listProduct(@PathVariable("id") Long id) {
-        return productService.findOne(id);
+        return productService.productById(id);
     }
 
 }

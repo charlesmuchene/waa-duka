@@ -5,10 +5,12 @@ import io.springgeeks.duka.domain.Product;
 import java.util.List;
 
 public interface ProductService {
-    List<Product> findAll();
 
-    void save(Product product);
+    public Product findByProductNumber(String productId);
 
-    Product findOne(long productId);
+    public List<Product> allProducts();
 
+    public Product productById(long id);
+
+    public Product save(Product product);
 }
