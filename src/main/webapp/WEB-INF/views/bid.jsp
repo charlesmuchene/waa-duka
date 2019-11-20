@@ -12,7 +12,7 @@
 <body>
 <div id="product_bid_div">
     <div class="row justify-content-center">
-        <div class="card" style="width: 300px;">
+        <div class="card" style="width: 300px; margin-top: 5%">
             <img src="<spring:url value="/resources/images/sample_product.jpg"/>" class="card-img-top"
                  alt="Product" width="200px">
             <div class="card-body">
@@ -28,7 +28,7 @@
                 <div class="row align-items-center">
                     <div class="col-sm-9">
                         <input type="number" placeholder="Enter amount"
-                               class="form-control" value="20,000" required id="bid_amount">
+                               class="form-control" value="20000" required id="bid_amount">
                     </div>
                     <div class="col-sm-2">
                         <a href="#" class="btn btn-primary" id="bid_link">Bid</a>
