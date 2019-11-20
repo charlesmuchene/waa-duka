@@ -4,7 +4,6 @@ import io.springgeeks.duka.domain.Product;
 import io.springgeeks.duka.service.BiddingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

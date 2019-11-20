@@ -9,5 +9,6 @@ public interface ProductService {
 
     void save(Product product);
 
-    public Product findByProductNumber(Long productId);
+    Product findOne(long productId);
+
 }

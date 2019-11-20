@@ -1,8 +1,6 @@
 package io.springgeeks.duka.domain;
 
-import javax.annotation.PostConstruct;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 
 /**
@@ -19,11 +17,6 @@ public class BidPayload {
     private double price;
 
     private LocalDateTime bidDate = LocalDateTime.now();
-
-    @PostConstruct
-    private void populate() {
-        bidDate = LocalDateTime.now();
-    }
 
     public long getProductId() {
         return productId;
