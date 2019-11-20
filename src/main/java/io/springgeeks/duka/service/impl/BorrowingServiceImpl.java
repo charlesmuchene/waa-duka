@@ -8,12 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
-@Transactional
 @Service
+@Transactional
 public class BorrowingServiceImpl implements BorrowingService {
 
     @Autowired
-    BorrowingRepository borrowingRepository;
+    private BorrowingRepository borrowingRepository;
 
     @Override
     public boolean checkIfProductIsAvailableForBorrowing(LocalDate borrowedDate, LocalDate returnDate) {

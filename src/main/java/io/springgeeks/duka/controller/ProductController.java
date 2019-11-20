@@ -2,6 +2,7 @@ package io.springgeeks.duka.controller;
 
 import io.springgeeks.duka.domain.Product;
 import io.springgeeks.duka.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+@Controller
 public class ProductController {
+
+    @Autowired
     private ProductService productService;
 
     @RequestMapping(value="/addProduct",method = RequestMethod.GET)
@@ -21,13 +25,13 @@ public class ProductController {
 
     @RequestMapping(value="/addProduct", method = RequestMethod.POST)
     public String saveProduct(Product product ) {
-        productService.save(product);
+        product = productService.save(product);
         return "ProductDetails";
     }
 
     @RequestMapping(value="/viewProducts",method = RequestMethod.GET)
     public String listProducts(Model model ) {
-        List<Product> list = productService.getAll();
+        List<Product> list = productService.allProducts();
         model.addAttribute("products",  list);
         return "viewProducts";
     }
@@ -35,7 +39,7 @@ public class ProductController {
     @RequestMapping(value="/{id}",method = RequestMethod.GET)
     public @ResponseBody
     Product listProduct(@PathVariable("id") Long id) {
-        Product product = productService.getOne(id);
+        Product product = productService.productById(id);
         return product;
     }
 
