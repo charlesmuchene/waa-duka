@@ -2,7 +2,7 @@
  * Stomp client
  */
 const rootContext = '/' + window.location.pathname.split('/')[1];
-const socket = new SockJS(rootContext + '/market');
+const socket = new SockJS(/*rootContext + */'/market'); // TODO Remove if not launching at root
 const client = Stomp.over(socket);
 const username = "guest";
 const password = "guest";
