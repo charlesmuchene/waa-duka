@@ -31,16 +31,11 @@ public class BorrowingController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String check() {
-        return "redirect:/borrow/" + Base64.getEncoder().encodeToString("P001002".getBytes());
-    }
-
     @RequestMapping(value = "/{selectedProductId}", method = RequestMethod.GET)
     public String borrowForm(@PathVariable String selectedProductId,
                              @ModelAttribute("newBorrow") Borrowing borrowing,
                              Model model) {
-        Product product = productService.findByProductNumber(new String(Base64.getDecoder().decode(selectedProductId)));
+        Product product = productService.findByProductNumber(selectedProductId);
         if (product != null) {
             borrowing.setProduct(product);
             model.addAttribute("productToRent", product);

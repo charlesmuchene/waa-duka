@@ -34,4 +34,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
+    @Override
+
+    public List<Product> searchResults(String search) {
+        return productRepository.searchResults(search);
+    }
+
 }
