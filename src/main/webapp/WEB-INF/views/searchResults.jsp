@@ -72,7 +72,7 @@
 
                         <p>${product.price}</p>
 
-                        <span><a href="<spring:url value="/borrow"/>">Borrow</a> </span>
+                        <span><a href="<spring:url value="/borrow/${product.serialNumber}"/>">Borrow</a> </span>
                     </div>
 
                 </c:forEach>
