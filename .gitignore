@@ -230,3 +230,4 @@ $RECYCLE.BIN/
 *.lnk
 .idea/jsLibraryMappings.xml
 lib/**
+*.log
