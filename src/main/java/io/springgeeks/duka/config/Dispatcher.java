@@ -1,10 +1,12 @@
 package io.springgeeks.duka.config;
 
+import io.springgeeks.duka.domain.formatters.BorrowingValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.validation.Validator;
@@ -61,5 +63,15 @@ public class Dispatcher extends WebMvcConfigurerAdapter {
     @Override
     public Validator getValidator() {
         return validator();
+    }
+
+    @Bean
+    public Validator borrowingValidator() {
+        return new BorrowingValidator();
+    }
+
+    @Bean
+    public MessageSourceAccessor messageAccessor() {
+        return new MessageSourceAccessor(messageSource());
     }
 }
