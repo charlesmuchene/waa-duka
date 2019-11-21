@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
@@ -12,12 +13,12 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<img src="<spring:url value='/resource/images/loneRanger.jpg' />" />
-				<h1> ${greeting} </h1>
-				<p> ${tagline} </p>
+				<img src="<spring:url value='/resource/images/icon.png' />" />
+
 			</div>	 
  
 				  <div class="container">
+
 	
  				  <security:authorize access="isAnonymous()">
  				  <!-- WHICH ONE? depends on basic form OR CUSTOM -->
@@ -34,7 +35,31 @@
 					 <a href="#" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span> Go to Company
 					</a>
-				</div>	
+				</div>
+
+
+			<security:authorize access="isAnonymous()">
+				<div class="search">
+					<spring:url var="search" value="/search"/>
+					<form:form action="${search}" method="get">
+						<input name="search" id="search" type="text"/>
+						<input type="submit" value="Search">
+					</form:form>
+
+					<c:forEach items="${products}" var="product">
+						<div style="border-top:1px solid gray;margin-right:10px;padding:5px;float:left;width:20%">
+							<h2>${product.productName}</h2>
+							<span>${product.serialNumber}</span>
+<%--							<p>${product.description}</p>--%>
+							<span><a href="#">More Details</a> </span>
+						</div>
+
+					</c:forEach>
+
+				</div>
+
+				<a href="<spring:url value="../addProductTest"/>">Add Product</a>
+			</security:authorize>
 		</div>	
 	</section>
 	

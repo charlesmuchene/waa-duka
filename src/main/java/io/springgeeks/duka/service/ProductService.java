@@ -6,11 +6,12 @@ import java.util.List;
 
 public interface ProductService {
 
-    public Product findByProductNumber(String productId);
+    //public Product findByProductNumber(String productId);
 
-    public List<Product> allProducts();
+    public List<Product> findAll();
 
     public Product productById(long id);
 
-    public Product save(Product product);
+    void save(Product product);
+    List<Product> searchResults(String search);
 }

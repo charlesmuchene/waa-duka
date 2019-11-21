@@ -17,21 +17,23 @@ public class ProductServiceImpl implements ProductService {
     ProductRepository productRepository;
 
     @Override
-    public Product findByProductNumber(String productId) {
-        return productRepository.findByNumber(productId);
+    public List<Product> findAll() {
+        return (List<Product>)productRepository.findAll();
     }
-    @Override
-    public List<Product> allProducts() {
-        return (List<Product>) productRepository.findAll();
-    }
+
     @Override
     public Product productById(long id) {
         return productRepository.findOne(id);
     }
 
     @Override
-    public Product save(Product product) {
-        return productRepository.save(product);
+    public void save(Product product) {
+        productRepository.save(product);
     }
 
+
+    @Override
+    public List<Product> searchResults(String search) {
+        return productRepository.searchResults(search);
+    }
 }
