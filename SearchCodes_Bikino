@@ -1,0 +1,62 @@
+// CODES for Search 
+
+====================
+// ProductRepository 
+
+@Query("SELECT p FROM Product p  WHERE p.number like :search% or p.productName")
+    List<Product> searchResults(@Param("search") String search);
+====================
+
+====================
+// ServiceImpl 
+
+@Override
+
+    public List<Product> searchResults(String search) {
+        return productRepository.searchResults(search);
+    }
+====================
+====================
+// ProductService
+
+    List<Product> findProducts();
+    List<Product> searchResults(String search);
+====================
+====================
+// ProductController
+
+    @RequestMapping(value = {"/"},method = RequestMethod.GET)
+    public String searchProduct(@ModelAttribute("products") Product product, Model model){
+
+        model.addAttribute("products", productService.findProducts());
+
+        return "welcome";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET )
+    public String newSearchProduct(@ModelAttribute("searchResults") Product product, @RequestParam("search") String search, Model model){
+
+        model.addAttribute("searchResults", productService.searchResults(search));
+        return "searchResults";
+    }
+=======================
+
+// Welcome.jsp  - This will show up the Search Form and Display all products. Note: You can post it anyware on any page
+
+			<div class="search">
+				<spring:url var="search" value="/search"/>
+				<form:form action="${search}" method="get">
+				<input name="search" id="search" type="text"/>
+					<input type="submit" value="Search">
+				</form:form>
+
+					<c:forEach items="${products}" var="product">
+                        <div style="border-top:1px solid gray;margin-right:10px;padding:5px;float:left;width:20%">
+                            <h2>${product.productName}</h2>
+                            <span>${product.serialNumber}</span>
+                            <span><a href="#">More Details</a> </span>
+                        </div>
+
+					</c:forEach>
+
+			</div>
