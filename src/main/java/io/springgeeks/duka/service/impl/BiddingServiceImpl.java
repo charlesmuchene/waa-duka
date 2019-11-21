@@ -32,7 +32,7 @@ public class BiddingServiceImpl implements BiddingService {
     public Product placeBid(Bid bid) {
 
         Product product = new Product();
-        product.setPrice(14500);
+        product.setPrice(100);
         product.setId(bid.getProductId());
 
 //      TODO Work with service: Product product = productService.productById(bid.getProductId());
