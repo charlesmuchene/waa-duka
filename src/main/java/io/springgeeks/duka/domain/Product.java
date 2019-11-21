@@ -16,6 +16,7 @@ public class Product {
     @ManyToOne @JoinColumn(name = "category_id")
     private Category category;
     @Column(columnDefinition = "varchar(7) not null")
+    @Enumerated(EnumType.STRING)
     private Activity activity;
     @Column(name = "on_bid")
     private boolean onBid;

@@ -8,8 +8,23 @@ const changeFormElemVisibility = function (elem, val) {
 
 $('#newBorrow').submit(function (e) {
     e.preventDefault();
-    if(areBorrowFormDataValid()) {
-
+    if (areBorrowFormDataValid()) {
+        $.ajax({
+            url: 'save',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function (data) {
+                alert(data)
+            },
+            error: function (data) {
+                alert(data.errorType);
+                if(data.responseJson.errorType === "ValidationError") {
+                    alert("Validation");
+                } else {
+                    alert(data.responseJson.errors(0));
+                }
+            }
+        });
     }
 });
 
@@ -27,7 +42,7 @@ const areBorrowFormDataValid = function () {
     let amt = $('#amountPaid');
     let procBtn = $('#procBtn');
     if (borr.valid() && ret.valid()) {
-        let amount = Math.ceil((new Date(ret.val() + "").getTime() - new Date(borr.val() + "").getTime()) / 1000 / 3600) * 5;
+        let amount = Math.ceil((new Date(ret.val() + "").getTime() - new Date(borr.val() + "").getTime()) / 1000 / 3600) * $("#rentPerHour").val();
         if (amount > 0) {
             amt.val(amount);
             changeFormElemVisibility(procBtn, false);
@@ -38,3 +53,49 @@ const areBorrowFormDataValid = function () {
     changeFormElemVisibility(procBtn, true);
     return false;
 };
+
+$("#avail-form").submit(function (e) {
+    e.preventDefault();
+    if (!$('#startDate').valid() || !$('#endDate').valid()) {
+        return;
+    }
+    $.ajax({
+        url: 'availability',
+        method: 'GET',
+        dataType: 'json',
+        data: $(this).serialize(),
+        success: function (data) {
+            $('.avSlot').remove();
+            let elements = "";
+            for (let i = 0; i < data.length; i++) {
+                elements += "<div class='col-lg-4 avSlot'>"
+                    + "<p>From: <em class='avStartDate'>" + formatDate(data[i].startDate) + "</em></p>"
+                    + "<p>To: <em class='avEndDate'>" + formatDate(data[i].endDate) + "</em></p>"
+                    + "<p><button class='btn btn-sm btn-outline-info avBtn' type='button'>Choose</button></p>"
+                    + "</div>"
+            }
+            $('#availableTimeSlots').append(elements);
+        }
+    });
+});
+
+function formatDate(d) {
+    let hour = d.hour;
+    let minute = d.minute;
+    if(("" + hour).length === 1) {
+        hour = "0" + hour;
+    }
+    if(("" + minute).length === 1) {
+        minute = "0" + minute;
+    }
+
+    return d.monthValue + "/" + d.dayOfMonth + "/" + d.year + " " + hour + ":" + minute;
+}
+
+$(document).on('click', '.avBtn', function(e) {
+    e.preventDefault();
+    let par = $(this).parent().parent();
+    $('#borrowedDate').val(par.find("p:nth-child(1)>em").html());
+    $('#returnDate').val(par.find("p:nth-child(2)>em").html());
+    areBorrowFormDataValid();
+});
