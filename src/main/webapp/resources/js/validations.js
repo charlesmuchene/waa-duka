@@ -19,3 +19,22 @@ $('#newBorrow').validate({
         }
     }
 });
+
+$('#avail-form').validate({
+    rules: {
+        startDate: {
+            required:true
+        },
+        endDate: {
+            required:true
+        }
+    },
+    messages: {
+        startDate: {
+            required:"Start date is required!"
+        },
+        endDate: {
+            required:"Start date is required!"
+        }
+    }
+});
