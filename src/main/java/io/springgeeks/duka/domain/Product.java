@@ -16,7 +16,8 @@ public class Product {
     @ManyToOne @JoinColumn(name = "category_id")
     private Category category;
     @Column(columnDefinition = "varchar(7) not null")
-    private String activity;
+    @Enumerated(EnumType.STRING)
+    private Activity activity;
     @Column(name = "on_bid")
     private boolean onBid;
     @Column(name = "rent_per_hour")
@@ -40,11 +41,11 @@ public class Product {
         this.id = id;
     }
 
-    public String getActivity() {
+    public Activity getActivity() {
         return activity;
     }
 
-    public void setActivity(String activity) {
+    public void setActivity(Activity activity) {
         this.activity = activity;
     }
 
