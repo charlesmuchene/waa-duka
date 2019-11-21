@@ -13,4 +13,6 @@ public interface ProductService {
     public Product productById(long id);
 
     public Product save(Product product);
+
+    List<Product> searchResults(String search);
 }

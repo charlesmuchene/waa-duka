@@ -1,15 +1,15 @@
 package io.springgeeks.duka.controller;
 
+import io.springgeeks.duka.domain.Activity;
+import io.springgeeks.duka.domain.Category;
 import io.springgeeks.duka.domain.Product;
 import io.springgeeks.duka.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -29,7 +29,7 @@ public class ProductController {
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String saveProduct(Product product) {
-        product = productService.save(product);
+        productService.save(product);
         return "ProductDetails";
     }
 
@@ -45,5 +45,21 @@ public class ProductController {
     Product listProduct(@PathVariable("id") Long id) {
         return productService.productById(id);
     }
+
+    @RequestMapping(value = {"/","/welcome"},method = RequestMethod.GET)
+    public String searchProduct(@ModelAttribute("products") Product product, Model model){
+
+        model.addAttribute("products", productService.allProducts());
+
+        return "welcome";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET )
+    public String newSearchProduct(@ModelAttribute("searchResults") Product product, @RequestParam("search") String search, Model model){
+
+        model.addAttribute("searchResults", productService.searchResults(search));
+        return "searchResults";
+    }
+
 
 }
