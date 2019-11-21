@@ -13,7 +13,7 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>Welcome Kimosabe!! </h1>
+				<h1>Welcome To your "DUKA" Web Market Place!! </h1>
 			</div>
 		</div>
 	</section>
@@ -43,8 +43,11 @@
 			    			<input class=" form:input-large" placeholder="Password" name="password"  type="password" >
 			    		</div>
 			    		<input class="btn btn-lg btn-success btn-mini" type="submit" value="Login">
+						<div class="margin-top20 text-center"> Don't have an account?Please register from here:<a href="<spring:url value="/signup"/>" class="login" title="New User Register here" >Register</a></div>
 			    	</fieldset>
-			      	</form>
+					</form>
+
+
 			    </div>
 			</div>
 		</div>

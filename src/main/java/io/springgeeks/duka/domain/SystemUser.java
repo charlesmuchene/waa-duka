@@ -1,6 +1,10 @@
 package io.springgeeks.duka.domain;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "system_user")
@@ -8,16 +12,24 @@ public class SystemUser {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(length = 20, nullable = false)
+    @NotEmpty(message = "${NotEmpty}")
     private String surname;
     @Column(name = "other_names", length = 40, nullable = false)
+    @NotEmpty(message = "${NotEmpty}")
     private String otherNames;
     @Column(unique = true, length = 80, nullable = false)
+    @Email
     private String email;
     private String phone;
-    @Column(unique = true, nullable = false)
-    private String username;
+    @NotEmpty(message = "${NotEmpty}")
+    private String susername;
     @Column(length = 256)
+    @NotEmpty(message = "${NotEmpty}")
     private String password;
+
+    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="username")
+    private Credentials credentials;
 
     public int getId() {
         return id;
@@ -60,11 +72,12 @@ public class SystemUser {
     }
 
     public String getUsername() {
-        return username;
+        return susername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+
+    public void setUsername(String susername) {
+        this.susername = susername;
     }
 
     public String getPassword() {

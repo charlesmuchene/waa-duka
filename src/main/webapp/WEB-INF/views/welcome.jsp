@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <html>
@@ -20,9 +21,13 @@
 				  <div class="container">
 	
  				  <security:authorize access="isAnonymous()">
+
  				  <!-- WHICH ONE? depends on basic form OR CUSTOM -->
     					<!--a href="<spring:url value='/spring_security_login' />" class="btn btn-default pull-right"> Login</a-->
     					<a href="<spring:url value='/login' />" class="btn btn-default pull-right"> Login</a>
+					  <a href="<spring:url value='/signup' />" class="btn btn-default pull-right"> Register</a>
+
+					  <a href="<spring:url value="/signup">Signup</spring:url>"></a>
 				</security:authorize>
 	
  				<p> <security:authorize access="isAuthenticated()">
@@ -37,6 +42,15 @@
 				</div>	
 		</div>	
 	</section>
+
+
+
+<%--	<form--%>
+<%--<form:form action="/signup" method="get">--%>
+
+<%--	<input type="submit">--%>
+
+<%--</form:form>--%>
 	
 </body>
 </html>
