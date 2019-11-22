@@ -20,6 +20,12 @@ public class ProductServiceImpl implements ProductService {
     public Product findByProductNumber(String productId) {
         return productRepository.findByNumber(productId);
     }
+
+    @Override
+    public Product findByProductSerialNumber(String serialNumber) {
+        return productRepository.findBySerialNumber(serialNumber);
+    }
+
     @Override
     public List<Product> allProducts() {
         return (List<Product>) productRepository.findAll();

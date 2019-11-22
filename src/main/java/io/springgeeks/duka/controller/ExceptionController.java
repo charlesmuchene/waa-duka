@@ -31,7 +31,6 @@ public class ExceptionController {
         DomainErrors errors = new DomainErrors();
         errors.setErrorType("ValidationError");
         for (FieldError fieldError : fieldErrors) {
-            System.out.println("################" + fieldError);
             DomainError error = new DomainError(messageAccessor.getMessage(fieldError));
             errors.addError(error);
         }
