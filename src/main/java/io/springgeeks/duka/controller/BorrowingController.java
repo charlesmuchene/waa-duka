@@ -6,19 +6,19 @@ import io.springgeeks.duka.domain.SystemUser;
 import io.springgeeks.duka.domain.formatters.ProductNotAvailableException;
 import io.springgeeks.duka.service.BorrowingService;
 import io.springgeeks.duka.service.ProductService;
-import io.springgeeks.duka.service.util.LocalDatePair;
+import io.springgeeks.duka.util.LocalDatePair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -35,9 +35,8 @@ public class BorrowingController {
     public String borrowForm(@PathVariable String selectedProductId,
                              @ModelAttribute("newBorrow") Borrowing borrowing,
                              Model model) {
-        Product product = productService.findByProductNumber(selectedProductId);
+        Product product = productService.findByProductSerialNumber(selectedProductId);
         if (product != null) {
-            borrowing.setProduct(product);
             model.addAttribute("productToRent", product);
             return "borrow";
         }
@@ -46,17 +45,19 @@ public class BorrowingController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public @ResponseBody
-    Borrowing borrow(@Valid @ModelAttribute("newBorrow") Borrowing borrowing) throws ProductNotAvailableException {
-
-        if (!borrowingService.checkIfProductIsAvailableForBorrowing(borrowing.getBorrowedDate(), borrowing.getReturnDate())) {
+    Borrowing borrow(@Valid @RequestBody Borrowing borrowing, HttpServletRequest request) throws ProductNotAvailableException {
+        Product product = (Product) request.getSession(true).getAttribute("productToRent");
+        if (!borrowingService.checkIfProductIsAvailableForBorrowing(borrowing.getBorrowedDate(), borrowing.getReturnDate(), product)) {
             throw new ProductNotAvailableException();
         } else {
+            borrowing.setProduct(product);
             SystemUser systemUser = new SystemUser();
             systemUser.setId(1);
             borrowing.setSystemUser(systemUser);
             borrowing = borrowingService.save(borrowing);
         }
         return borrowing;
+
     }
 
     @RequestMapping(value = "/availability", method = RequestMethod.GET)
