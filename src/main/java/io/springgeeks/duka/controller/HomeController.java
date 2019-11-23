@@ -19,15 +19,14 @@ public class HomeController {
         return "welcome";
     }
 
-    @RequestMapping(value = "/{view}")
-    public String jspView(@PathVariable String view) {
-        if(view.equalsIgnoreCase("bid")) {
-            return "bid";
-        } else if (view.equalsIgnoreCase("home")) {
-            return "dashboard";
-        } else {
-            throw new ResourceNotFound();
-        }
+    @RequestMapping(value = "/home")
+    public String home() {
+        return "dashboard";
+    }
+
+    @RequestMapping("/bid")
+    public String bid() {
+        return "bid";
     }
 
 }
