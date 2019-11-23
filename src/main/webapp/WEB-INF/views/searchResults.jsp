@@ -1,11 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: bikino
-<<<<<<< HEAD
-  Date: 18/11/2019
-  Time: 17:36
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
