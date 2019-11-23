@@ -13,6 +13,9 @@ public class Product {
     private String number;
     @Column(length = 20, name = "serial_number", unique = true, nullable = false)
     private String serialNumber;
+    @Column(length = 200)
+    private String productDescription;
+    private String productUrlImage;
     @ManyToOne @JoinColumn(name = "category_id")
     private Category category;
     @Column(columnDefinition = "varchar(7) not null")
@@ -22,15 +25,15 @@ public class Product {
     private boolean onBid;
     @Column(name = "rent_per_hour")
     private double rentPerHour;
-
     private double price;
 
-    public String getSerialNumber() {
-        return serialNumber;
+
+    public String getProductUrlImage() {
+        return productUrlImage;
     }
 
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
+    public void setProductUrlImage(String productUrlImage) {
+        this.productUrlImage = productUrlImage;
     }
 
     public long getId() {
@@ -39,14 +42,6 @@ public class Product {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Activity getActivity() {
-        return activity;
-    }
-
-    public void setActivity(Activity activity) {
-        this.activity = activity;
     }
 
     public String getName() {
@@ -65,12 +60,36 @@ public class Product {
         this.number = number;
     }
 
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setDescription(String description) {
+        this.productDescription = productDescription;
+    }
+
     public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
     public boolean isOnBid() {
@@ -97,6 +116,7 @@ public class Product {
         this.price = price;
     }
 
+
     @Override
     public String toString() {
         return "Product{" +
@@ -104,6 +124,8 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", number='" + number + '\'' +
                 ", serialNumber='" + serialNumber + '\'' +
+                ", description='" + productDescription + '\'' +
+                ", productUrlImage='" + productUrlImage + '\'' +
                 ", category=" + category +
                 ", activity=" + activity +
                 ", onBid=" + onBid +
