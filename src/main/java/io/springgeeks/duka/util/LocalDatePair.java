@@ -1,4 +1,4 @@
-package io.springgeeks.duka.service.util;
+package io.springgeeks.duka.util;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

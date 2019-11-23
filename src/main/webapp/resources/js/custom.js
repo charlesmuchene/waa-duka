@@ -12,16 +12,17 @@ $('#newBorrow').submit(function (e) {
         $.ajax({
             url: 'save',
             method: 'POST',
-            data: $(this).serialize(),
+            data: JSON.stringify(serializeForm($(this))),
+            dataType: 'json',
             success: function (data) {
-                alert(data)
+                location.replace("dashboard");
             },
             error: function (data) {
-                alert(data.errorType);
-                if(data.responseJson.errorType === "ValidationError") {
+                console.log(data);
+                if(data.responseJSON.errorType === "ValidationError") {
                     alert("Validation");
                 } else {
-                    alert(data.responseJson.errors(0));
+                    alert(data.responseJSON.message);
                 }
             }
         });
@@ -99,3 +100,16 @@ $(document).on('click', '.avBtn', function(e) {
     $('#returnDate').val(par.find("p:nth-child(2)>em").html());
     areBorrowFormDataValid();
 });
+
+function serializeForm(form) {
+    let json = {};
+    let formData = form.serializeArray();
+    console.log(formData);
+    $.each(formData, function () {
+        if(this.name !== 'prod') {
+            json[this.name] = this.value;
+        }
+    });
+    console.log(json);
+    return json;
+}

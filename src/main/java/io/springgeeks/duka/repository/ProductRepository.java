@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
 
-    public Product findByNumber(String productNumber);
+    Product findByNumber(String productNumber);
+    Product findBySerialNumber(String serialNumber);
 
     @Query("SELECT p FROM Product p  WHERE p.name like :search%")
     List<Product> searchResults(@Param("search") String search);
