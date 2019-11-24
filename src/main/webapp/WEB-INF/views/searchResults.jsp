@@ -48,6 +48,7 @@
     <div>
 
         <security:authorize access="isAnonymous()">
+            Welcome to Search Results
             <div class="search">
                 <spring:url var="search" value="/search"/>
                 <form:form action="${search}" method="get">

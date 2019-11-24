@@ -17,4 +17,6 @@ public interface ProductService {
     public Product save(Product product);
 
     List<Product> searchResults(String search);
+
+    List<Product> searchProductsByCategoryId(Long category_id);
 }

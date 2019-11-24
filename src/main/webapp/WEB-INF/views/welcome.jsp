@@ -15,8 +15,8 @@
 			<div class="container">
 				<img src="<spring:url value="/resources/images/geeks.jpg"/>" class="card-img-top"
 					 alt="Product" height="150px"/>
-				<h1> ${greeting} </h1>
-				<p> ${tagline} </p>
+<%--				<h1> ${greeting} </h1>--%>
+<%--				<p> ${tagline} </p>--%>
 			</div>
 				  <div class="container">
 	
@@ -40,13 +40,15 @@
 	<security:authorize access="isAnonymous()">
 
 <%--		<div>--%>
-<%--&lt;%&ndash;			Search by Category&ndash;%&gt;--%>
+
 <%--			Search by Category :--%>
-<%--	<form:select path="">--%>
-<%--			<c:forEach items="categories" var="category">--%>
-<%--				<form:option value="">${category.name}</form:option>--%>
-<%--			</c:forEach>--%>
-<%--	</form:select>--%>
+<%--	<spring:url value="/searchByCategory" var="results"/>--%>
+<%--	<form:form modelAttribute="product" action="results" method="get">--%>
+
+<%--		<form:select path="product.category_id" items="${categories}" itemValue="id" itemLabel="name"/>--%>
+<%--		<input type="submit" value="update"/>--%>
+<%-- 	</form:form>--%>
+
 <%--		</div>--%>
 		<spring:url var="search" value="/search"/>
 		<form:form action="${search}" method="get">
@@ -56,8 +58,6 @@
 		<c:forEach items="${products}" var="product">
 			<div style="border:1px solid #f2f3f3;padding:2px;float:left;width:30%;text-align:center;overflow: hidden;margin: 5px">
 				<h2>${product.name}</h2>
-<%--				<img src="<spring:url value="/resources/images/sample_product.jpg"/>" class="card-img-top"--%>
-<%--					 alt="Product" width="200px">--%>
 
 				<img src="<spring:url value="/resources/images/geeks.jpg"/>" class="card-img-top"
 					 alt="Product" width="200px">
@@ -74,10 +74,6 @@
 							   class="form-control" value="00" required id="bid_amount">
 						<a href="#" class="btn btn-primary" id="bid_link">Bid</a>
 					</div>
-<%--					<div style="clear: both;margin-top:5px" >--%>
-
-<%--						<a href="#" class="btn btn-primary" id="bid_link">Borrow</a>--%>
-<%--					</div>--%>
 				</div>
 			</div>
 
