@@ -16,4 +16,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query("SELECT p FROM Product p  WHERE p.name like :search%")
     List<Product> searchResults(@Param("search") String search);
 
+    @Query("SELECT p FROM Product p where p.category = :category_id")
+    List<Product> findProductByCategoryId(@Param("category_id") Long category_id);
+
 }

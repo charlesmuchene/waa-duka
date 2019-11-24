@@ -16,7 +16,8 @@ public class Product {
     @Column(length = 200)
     private String productDescription;
     private String productUrlImage;
-    @ManyToOne @JoinColumn(name = "category_id")
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
     @Column(columnDefinition = "varchar(7) not null")
     @Enumerated(EnumType.STRING)
@@ -27,14 +28,6 @@ public class Product {
     private double rentPerHour;
     private double price;
 
-
-    public String getProductUrlImage() {
-        return productUrlImage;
-    }
-
-    public void setProductUrlImage(String productUrlImage) {
-        this.productUrlImage = productUrlImage;
-    }
 
     public long getId() {
         return id;
@@ -72,8 +65,16 @@ public class Product {
         return productDescription;
     }
 
-    public void setDescription(String description) {
+    public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
+    }
+
+    public String getProductUrlImage() {
+        return productUrlImage;
+    }
+
+    public void setProductUrlImage(String productUrlImage) {
+        this.productUrlImage = productUrlImage;
     }
 
     public Category getCategory() {
@@ -116,7 +117,6 @@ public class Product {
         this.price = price;
     }
 
-
     @Override
     public String toString() {
         return "Product{" +
@@ -124,7 +124,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", number='" + number + '\'' +
                 ", serialNumber='" + serialNumber + '\'' +
-                ", description='" + productDescription + '\'' +
+                ", productDescription='" + productDescription + '\'' +
                 ", productUrlImage='" + productUrlImage + '\'' +
                 ", category=" + category +
                 ", activity=" + activity +

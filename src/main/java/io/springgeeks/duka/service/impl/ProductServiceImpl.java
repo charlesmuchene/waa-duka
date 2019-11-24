@@ -40,4 +40,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.searchResults(search);
     }
 
+    @Override
+    public List<Product> searchProductsByCategoryId(Long category_id) {
+        return productRepository.findProductByCategoryId(category_id);
+    }
+
+
 }
