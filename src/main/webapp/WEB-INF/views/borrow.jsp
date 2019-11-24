@@ -25,7 +25,6 @@
                 </div>
                 <div class="col-lg-6">
                     <form:form modelAttribute="newBorrow" method="POST" action="/duka/borrow">
-                        <form:input path="product.id" value="${productToRent.id}" type="hidden"/>
                         <input id="rentPerHour" value="${productToRent.rentPerHour}" type="hidden"/>
                         <div class="form-group">
                             <label for="product">Product:

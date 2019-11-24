@@ -4,17 +4,13 @@ import io.springgeeks.duka.domain.Borrowing;
 import io.springgeeks.duka.domain.Product;
 import io.springgeeks.duka.repository.BorrowingRepository;
 import io.springgeeks.duka.service.BorrowingService;
-import io.springgeeks.duka.service.util.LocalDatePair;
+import io.springgeeks.duka.util.LocalDatePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -28,8 +24,9 @@ public class BorrowingServiceImpl implements BorrowingService {
     private BorrowingRepository borrowingRepository;
 
     @Override
-    public boolean checkIfProductIsAvailableForBorrowing(LocalDateTime borrowedDate, LocalDateTime returnDate) {
-        return borrowingRepository.checkAvailability(borrowedDate, returnDate) == 0;
+    public boolean checkIfProductIsAvailableForBorrowing(LocalDateTime borrowedDate, LocalDateTime returnDate, Product product) {
+        List<Borrowing>list = borrowingInTheSelectedRange(borrowedDate, returnDate, borrowingRepository.findByProduct(product));
+        return list.size() == 0;
     }
 
     @Override
@@ -44,12 +41,12 @@ public class BorrowingServiceImpl implements BorrowingService {
                     pair.setStartDate(startDate);
                     pair.setEndDate(sortedList.get(i).getBorrowedDate());
                     slots.add(pair);
-                } else if ((i + 1) != sortedList.size() && sortedList.get(i).getReturnDate().until(sortedList.get(i + 1).getBorrowedDate(), ChronoUnit.HOURS) > 0) {
+                } else if ((i + 1) != sortedList.size() && sortedList.get(i).getReturnDate().until(sortedList.get(i + 1).getBorrowedDate(), ChronoUnit.MINUTES) > 0) {
                     pair.setStartDate(sortedList.get(i).getReturnDate());
                     pair.setEndDate((sortedList.get(i + 1).getBorrowedDate()));
                     slots.add(pair);
                 }
-                if ((i + 1) == sortedList.size() && sortedList.get(i).getReturnDate().until(endDate, ChronoUnit.HOURS) > 0) {
+                if ((i + 1) == sortedList.size() && sortedList.get(i).getReturnDate().until(endDate, ChronoUnit.MINUTES) > 0) {
                     pair.setStartDate(sortedList.get(i).getReturnDate());
                     pair.setEndDate(endDate);
                     slots.add(pair);
